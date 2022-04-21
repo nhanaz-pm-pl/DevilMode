@@ -1,0 +1,10 @@
+---
+# Prefix of the message
+Prefix: "&f[&eGodMode&f]&r "
+
+# Message sent to players when GodMode is enabled
+EnableMsg: "&aGod mode enabled!"
+
+# Message sent to players when GodMode is disabled
+DisableMsg: "&cGod mode disabled!"
+...

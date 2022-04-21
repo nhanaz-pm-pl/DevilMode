@@ -1,0 +1,20 @@
+---
+name: GodMode
+version: 0.0.1
+main: NhanAZ\GodMode\Main
+api: 4.0.0
+src-namespace-prefix: NhanAZ\GodMode
+load: POSTWORLD
+author: NhanAZ
+description: Players will not take damage when GodMode is enabled
+
+commands:
+  god:
+    description: "Will not take damage when GodMode is enabled"
+    permission: god.command
+
+permissions:
+  god.command:
+    default: op
+    description: Allows use of /god
+...
