@@ -1,8 +1,8 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/nhanaz-pm-pl/GodMode
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/nhanaz-pm-pl/DevilMode
 build-by-default: true
 branches:
 - master
 projects:
-  GodMode:
+  DevilMode:
     path: ""
 ...

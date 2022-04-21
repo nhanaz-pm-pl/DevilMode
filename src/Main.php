@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NhanAZ\GodMode;
+namespace NhanAZ\DevilMode;
 
 use pocketmine\utils\Config;
 use pocketmine\player\Player;
@@ -17,7 +17,7 @@ class Main extends PluginBase implements Listener {
 
 	private Config $cfg;
 
-	private array $gods = [];
+	private array $devil = [];
 
 	protected function onEnable(): void {
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -26,19 +26,19 @@ class Main extends PluginBase implements Listener {
 	}
 
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
-		if ($command->getName() === "god") {
+		if ($command->getName() === "devil") {
 			if (!$sender instanceof Player) {
 				$sender->sendMessage(TextFormat::RED . "You can't use this command in the terminal");
 				return true;
 			} else {
-				$prefix = $this->cfg->get("prefix", "&f[&eGodMode&f]&r ");
-				if (!isset($this->gods[$sender->getName()])) {
-					$this->gods[$sender->getName()] = $sender->getName();
-					$enableMsg = $this->cfg->get("EnableMsg", "&aGod mode enabled!");
+				$prefix = $this->cfg->get("prefix", "&f[&eDevilMode&f]&r ");
+				if (!isset($this->devil[$sender->getName()])) {
+					$this->devil[$sender->getName()] = $sender->getName();
+					$enableMsg = $this->cfg->get("EnableMsg", "&aDevil mode enabled!");
 					$sender->sendMessage(TextFormat::colorize($prefix . $enableMsg));
 				} else {
-					unset($this->gods[$sender->getName()]);
-					$disableMsg = $this->cfg->get("DisableMsg", "&cGod mode disabled!");
+					unset($this->devil[$sender->getName()]);
+					$disableMsg = $this->cfg->get("DisableMsg", "&cDevil mode disabled!");
 					$sender->sendMessage(TextFormat::colorize($prefix . $disableMsg));
 				}
 			}
@@ -50,7 +50,7 @@ class Main extends PluginBase implements Listener {
 	public function onEntityDamage(EntityDamageEvent $event) {
 		$entity = $event->getEntity();
 		if ($entity instanceof Player) {
-			if (isset($this->gods[$entity->getName()])) {
+			if (isset($this->devil[$entity->getName()])) {
 				$event->cancel();
 			}
 		}

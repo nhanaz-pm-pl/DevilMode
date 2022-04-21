@@ -1,20 +1,20 @@
 ---
-name: GodMode
+name: DevilMode
 version: 0.0.1
-main: NhanAZ\GodMode\Main
+main: NhanAZ\DevilMode\Main
 api: 4.0.0
-src-namespace-prefix: NhanAZ\GodMode
+src-namespace-prefix: NhanAZ\DevilMode
 load: POSTWORLD
 author: NhanAZ
-description: Players will not take damage when GodMode is enabled
+description: Players will not take damage when Devil Mode is enabled
 
 commands:
-  god:
-    description: "Will not take damage when GodMode is enabled"
-    permission: god.command
+  devil:
+    description: "Will not take damage when Devil Mode is enabled"
+    permission: devil.command
 
 permissions:
-  god.command:
+  devil.command:
     default: op
-    description: Allows use of /god
+    description: Allows use of /devil
 ...

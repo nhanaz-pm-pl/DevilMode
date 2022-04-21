@@ -1,10 +1,10 @@
 ---
 # Prefix of the message
-Prefix: "&f[&eGodMode&f]&r "
+Prefix: "&f[&eDevilMode&f]&r "
 
-# Message sent to players when GodMode is enabled
-EnableMsg: "&aGod mode enabled!"
+# Message sent to players when Devil Mode is enabled
+EnableMsg: "&aDevil mode enabled!"
 
-# Message sent to players when GodMode is disabled
-DisableMsg: "&cGod mode disabled!"
+# Message sent to players when Devil Mode is disabled
+DisableMsg: "&cDevil mode disabled!"
 ...
