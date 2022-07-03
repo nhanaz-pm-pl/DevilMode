@@ -28,7 +28,7 @@ class Main extends PluginBase implements Listener {
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
 		if ($command->getName() === "devil") {
 			if (!$sender instanceof Player) {
-				$sender->sendMessage(TextFormat::RED . "You can't use this command in the terminal");
+				$sender->sendMessage(TextFormat::colorize($this->cfg->get("CmdInClsMsg", "&cYou can't use this command in the terminal")));
 				return true;
 			} else {
 				$prefix = $this->cfg->get("prefix", "&f[&eDevilMode&f]&r ");
