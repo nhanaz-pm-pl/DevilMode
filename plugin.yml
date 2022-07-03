@@ -1,10 +1,9 @@
 ---
 name: DevilMode
-version: 0.0.1
+version: 0.0.2
 main: NhanAZ\DevilMode\Main
 api: 4.0.0
 src-namespace-prefix: NhanAZ\DevilMode
-load: POSTWORLD
 author: NhanAZ
 description: Players will not take damage when Devil Mode is enabled
 
