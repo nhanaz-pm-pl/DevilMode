@@ -12,6 +12,7 @@ use pocketmine\utils\TextFormat;
 use pocketmine\plugin\PluginBase;
 use pocketmine\command\CommandSender;
 use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\player\PlayerExhaustEvent;
 
 class Main extends PluginBase implements Listener {
 
@@ -53,6 +54,13 @@ class Main extends PluginBase implements Listener {
 			if (isset($this->devil[$entity->getName()])) {
 				$event->cancel();
 			}
+		}
+	}
+
+	public function onPlayerExhaust(PlayerExhaustEvent $event) {
+		$player = $event->getPlayer();
+		if (isset($this->devil[$player->getName()])) {
+			$event->cancel();
 		}
 	}
 }
