@@ -1,8 +1,8 @@
 ---
 name: DevilMode
-version: 0.0.2
+version: 0.0.3+dev
 main: NhanAZ\DevilMode\Main
-api: 4.0.0
+api: 5.0.0
 src-namespace-prefix: NhanAZ\DevilMode
 author: NhanAZ
 description: Players will not take damage when Devil Mode is enabled
