@@ -1,13 +1,13 @@
 ---
 # Prefix of the message
-Prefix: "&f[&eDevilMode&f]&r "
+Prefix: "§f[§eDevilMode§f]§r "
 
 # Message sent to players when Devil Mode is enabled
-EnableMsg: "&aDevil mode enabled!"
+EnableMsg: "§aDevil mode enabled!"
 
 # Message sent to players when Devil Mode is disabled
-DisableMsg: "&cDevil mode disabled!"
+DisableMsg: "§cDevil mode disabled!"
 
 # Message sent to user if command is used at console
-CmdInClsMsg: "&cYou can't use this command in the terminal"
+CmdInClsMsg: "§cYou can't use this command in the terminal"
 ...

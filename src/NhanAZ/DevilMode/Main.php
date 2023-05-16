@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace NhanAZ\DevilMode;
 
-use pocketmine\utils\Config;
 use pocketmine\player\Player;
 use pocketmine\event\Listener;
 use pocketmine\command\Command;
-use pocketmine\utils\TextFormat;
 use pocketmine\plugin\PluginBase;
 use pocketmine\command\CommandSender;
 use pocketmine\event\entity\EntityDamageEvent;
@@ -16,31 +14,27 @@ use pocketmine\event\player\PlayerExhaustEvent;
 
 class Main extends PluginBase implements Listener {
 
-	private Config $cfg;
-
-	private array $devil = [];
-
 	protected function onEnable(): void {
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->saveDefaultConfig();
-		$this->cfg = $this->getConfig();
 	}
 
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
 		if ($command->getName() === "devil") {
 			if (!$sender instanceof Player) {
-				$sender->sendMessage(TextFormat::colorize($this->cfg->get("CmdInClsMsg", "&cYou can't use this command in the terminal")));
+				$sender->sendMessage($this->getConfig()->get("CmdInClsMsg"));
 				return true;
 			} else {
-				$prefix = $this->cfg->get("prefix", "&f[&eDevilMode&f]&r ");
-				if (!isset($this->devil[$sender->getName()])) {
-					$this->devil[$sender->getName()] = $sender->getName();
-					$enableMsg = $this->cfg->get("EnableMsg", "&aDevil mode enabled!");
-					$sender->sendMessage(TextFormat::colorize($prefix . $enableMsg));
+				$prefix = $this->getConfig()->get("Prefix");
+				$session = Session::get($sender);
+				if ($session->isDevilMode()) {
+					$session->setDevilMode(false);
+					$disableMsg = $this->getConfig()->get("DisableMsg");
+					$sender->sendMessage($prefix . $disableMsg);
 				} else {
-					unset($this->devil[$sender->getName()]);
-					$disableMsg = $this->cfg->get("DisableMsg", "&cDevil mode disabled!");
-					$sender->sendMessage(TextFormat::colorize($prefix . $disableMsg));
+					$session->setDevilMode(true);
+					$enableMsg = $this->getConfig()->get("EnableMsg");
+					$sender->sendMessage($prefix . $enableMsg);
 				}
 			}
 			return true;
@@ -51,7 +45,8 @@ class Main extends PluginBase implements Listener {
 	public function onEntityDamage(EntityDamageEvent $event) {
 		$entity = $event->getEntity();
 		if ($entity instanceof Player) {
-			if (isset($this->devil[$entity->getName()])) {
+			$session = Session::get($entity);
+			if ($session->isDevilMode()) {
 				$event->cancel();
 			}
 		}
@@ -59,7 +54,8 @@ class Main extends PluginBase implements Listener {
 
 	public function onPlayerExhaust(PlayerExhaustEvent $event) {
 		$player = $event->getPlayer();
-		if (isset($this->devil[$player->getName()])) {
+		$session = Session::get($player);
+		if ($session->isDevilMode()) {
 			$event->cancel();
 		}
 	}
