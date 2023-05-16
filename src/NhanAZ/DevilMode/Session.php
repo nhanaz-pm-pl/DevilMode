@@ -19,7 +19,7 @@ final class Session {
 	public static function get(Player $player): Session {
 		self::$data ??= new \WeakMap();
 
-		return self::$data[$player] ??= self::loadSessionData($player);
+		return self::$data[$player] ??= self::loadSessionData();
 	}
 
 	private static function loadSessionData(): Session {
